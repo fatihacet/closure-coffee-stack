@@ -28,9 +28,10 @@ module.exports = (grunt) ->
           ext      : '.js'
         ]
 
-    templates:
-      all:
-        src: 'src/**/*.soy'
+    templates      :
+      all          :
+        src        : 'src/templates/**/*.soy'
+        dest       : 'build/templates/'
 
     deps:
       all:
@@ -87,10 +88,10 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'default', 'Build app and run stack.', (app = 'app') ->
     grunt.task.run [
-      'clean'
-      'coffee'
-      'coffee2closure'
-      # 'templates'
+      #'clean'
+      #'coffee'
+      #'coffee2closure'
+      'templates'
       # 'deps'
       # 'builder'
     ]
