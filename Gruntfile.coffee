@@ -2,46 +2,46 @@ module.exports = (grunt) ->
 
   grunt.initConfig
 
-    clean          :
-      all          :
-        options    :
-          force    : yes
-        src        : 'build'
+    clean            :
+      all            :
+        options      :
+          force      : yes
+        src          : 'build'
 
-    coffee         :
-      all          :
-        options    :
-          bare     : yes
-        files      : [
-          expand   : yes
-          cwd      : 'src/coffee'
-          src      : ['**/*.coffee']
-          dest     : 'build/js/'
-          ext      : '.js'
+    coffee           :
+      all            :
+        options      :
+          bare       : yes
+        files        : [
+          expand     : yes
+          cwd        : 'src/coffee'
+          src        : ['**/*.coffee']
+          dest       : 'build/js/'
+          ext        : '.js'
         ]
 
-    coffee2closure :
-      all          :
-        files      : [
-          expand   : yes
-          src      : 'build/js/**/*.js'
-          ext      : '.js'
+    coffee2closure   :
+      all            :
+        files        : [
+          expand     : yes
+          src        : 'build/js/**/*.js'
+          ext        : '.js'
         ]
 
-    templates      :
-      all          :
-        src        : 'src/templates/**/*.soy'
-        dest       : 'build/templates/'
+    templates        :
+      all            :
+        src          : 'src/templates/**/*.soy'
+        dest         : 'build/templates/'
 
-    deps:
-      all:
-        options:
-          outputFile: 'build/deps.js'
-          prefix: '../../../../'
-          root: [
+    deps             :
+      all            :
+        options      :
+          outputFile : 'build/deps.js'
+          prefix     : '../../../../'
+          root       : [
             'bower_components/closure-library'
             'bower_components/closure-templates'
-            'src'
+            'build'
           ]
 
     tests:
@@ -92,6 +92,6 @@ module.exports = (grunt) ->
       'coffee'
       'coffee2closure'
       'templates'
-      # 'deps'
+      'deps'
       # 'builder'
     ]
