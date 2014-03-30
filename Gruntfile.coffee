@@ -8,20 +8,22 @@ module.exports = (grunt) ->
           force: yes
         src: 'build'
 
-    coffee:
-      all:
-        options:
-          bare: true
-        files: [
-          expand: true
-          src: 'public/**/*.coffee'
-          ext: '.js'
+    coffee       :
+      all        :
+        options  :
+          bare   : yes
+        files    : [
+          expand : yes
+          cwd    : 'public'
+          src    : ['**/*.coffee']
+          dest   : 'build/js/'
+          ext    : '.js'
         ]
 
     coffee2closure:
       all:
         files: [
-          expand: true
+          expand: yes
           src: 'public/**/*.coffee'
           ext: '.js'
         ]
@@ -87,8 +89,8 @@ module.exports = (grunt) ->
     grunt.task.run [
       'clean'
       'coffee'
-      'coffee2closure'
-      'templates'
-      'deps'
-      'builder'
+      # 'coffee2closure'
+      # 'templates'
+      # 'deps'
+      # 'builder'
     ]
