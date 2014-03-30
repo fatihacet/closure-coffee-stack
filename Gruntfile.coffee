@@ -5,8 +5,8 @@ module.exports = (grunt) ->
     clean:
       all:
         options:
-          force: true
-        src: 'public/**/*.{js,css}'
+          force: yes
+        src: 'build'
 
     coffee:
       all:
