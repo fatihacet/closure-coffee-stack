@@ -2,35 +2,35 @@ module.exports = (grunt) ->
 
   grunt.initConfig
 
-    clean:
-      all:
-        options:
-          force: yes
-        src: 'build'
+    clean          :
+      all          :
+        options    :
+          force    : yes
+        src        : 'build'
 
-    coffee       :
-      all        :
-        options  :
-          bare   : yes
-        files    : [
-          expand : yes
-          cwd    : 'public'
-          src    : ['**/*.coffee']
-          dest   : 'build/js/'
-          ext    : '.js'
+    coffee         :
+      all          :
+        options    :
+          bare     : yes
+        files      : [
+          expand   : yes
+          cwd      : 'src/coffee'
+          src      : ['**/*.coffee']
+          dest     : 'build/js/'
+          ext      : '.js'
         ]
 
     coffee2closure :
       all          :
         files      : [
           expand   : yes
-          src      : 'build/**/*.js'
+          src      : 'build/js/**/*.js'
           ext      : '.js'
         ]
 
     templates:
       all:
-        src: 'public/**/*.soy'
+        src: 'src/**/*.soy'
 
     deps:
       all:
@@ -40,7 +40,7 @@ module.exports = (grunt) ->
           root: [
             'bower_components/closure-library'
             'bower_components/closure-templates'
-            'public'
+            'src'
           ]
 
     tests:
@@ -48,7 +48,7 @@ module.exports = (grunt) ->
         options:
           depsPath: '<%= deps.all.options.outputFile %>'
           prefix: '<%= deps.all.options.prefix %>'
-        src: 'public/**/*_test.js'
+        src: 'src/**/*_test.js'
 
     builder:
       options:
@@ -59,7 +59,7 @@ module.exports = (grunt) ->
           '--compilation_level="ADVANCED_OPTIMIZATIONS"'
           '--warning_level="VERBOSE"'
           '--define=goog.net.XmlHttp.ASSUME_NATIVE_XHR=true'
-          # '--define=public.json.SUPPORTS_NATIVE_JSON=true'
+          # '--define=src.json.SUPPORTS_NATIVE_JSON=true'
           '--define=goog.style.GET_BOUNDING_CLIENT_RECT_ALWAYS_EXISTS=true'
           '--define=goog.DEBUG=false'
         ]
