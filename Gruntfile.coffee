@@ -88,9 +88,9 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'default', 'Build app and run stack.', (app = 'app') ->
     grunt.task.run [
-      #'clean'
-      #'coffee'
-      #'coffee2closure'
+      'clean'
+      'coffee'
+      'coffee2closure'
       'templates'
       # 'deps'
       # 'builder'
