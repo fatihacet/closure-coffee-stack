@@ -8,6 +8,18 @@ module.exports = (grunt) ->
           force      : yes
         src          : 'build'
 
+    mkdir            :
+      all            :
+        options      :
+          create     : [
+            'src/coffee'
+            'src/externs'
+            'src/images'
+            'src/styl'
+            'src/templates'
+            'src/third-party'
+          ]
+
     coffee           :
       all            :
         options      :
@@ -94,12 +106,14 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-stylus'
+  grunt.loadNpmTasks 'grunt-mkdir'
   grunt.loadNpmTasks 'grunt-closure-coffee-stack'
   grunt.loadNpmTasks 'grunt-npm'
 
   grunt.registerTask 'test', 'Build stack with tests', ->
     grunt.task.run [
       'clean'
+      'mkdir'
       'coffee'
       'coffee2closure'
       'stylus'
@@ -112,6 +126,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'default', 'Build stack.', (app = 'app') ->
     grunt.task.run [
       'clean'
+      'mkdir'
       'coffee'
       'coffee2closure'
       'stylus'
