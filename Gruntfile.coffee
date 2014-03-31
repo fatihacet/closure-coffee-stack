@@ -28,6 +28,19 @@ module.exports = (grunt) ->
           ext        : '.js'
         ]
 
+    stylus           :
+      options        :
+        'include css': true
+        'compress'   : false
+      all            :
+        files        : [
+          expand     : true
+          src        : [ '*.styl' ]
+          ext        : '.css'
+          cwd        : 'src/styl'
+          dest       : 'build/css'
+        ]
+
     templates        :
       all            :
         src          : 'src/templates/**/*.soy'
@@ -80,6 +93,7 @@ module.exports = (grunt) ->
 
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
+  grunt.loadNpmTasks 'grunt-contrib-stylus'
   grunt.loadNpmTasks 'grunt-closure-coffee-stack'
   grunt.loadNpmTasks 'grunt-npm'
 
@@ -88,6 +102,7 @@ module.exports = (grunt) ->
       'clean'
       'coffee'
       'coffee2closure'
+      'stylus'
       'templates'
       'deps'
       'tests'
@@ -99,6 +114,7 @@ module.exports = (grunt) ->
       'clean'
       'coffee'
       'coffee2closure'
+      'stylus'
       'templates'
       'deps'
       'builder'
