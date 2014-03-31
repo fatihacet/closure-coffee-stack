@@ -51,24 +51,32 @@ module.exports = (grunt) ->
           prefix     : '<%= deps.all.options.prefix %>'
         src          : 'build/js/**/*_test.js'
 
-    builder:
-      options:
-        root: '<%= deps.all.options.root %>'
-        depsPath: '<%= deps.all.options.outputFile %>'
-        compilerFlags: [
+    builder              :
+      all                :
+        options          :
+          namespace      : '*'
+          outputFilePath : 'build/compiled.js'
+      options            :
+        root             : '<%= deps.all.options.root %>'
+        depsPath         : '<%= deps.all.options.outputFile %>'
+        compilerFlags    : [
           '--output_wrapper="(function(){%output%})();"'
           '--compilation_level="ADVANCED_OPTIMIZATIONS"'
           '--warning_level="VERBOSE"'
-          '--define=goog.net.XmlHttp.ASSUME_NATIVE_XHR=true'
-          # '--define=src.json.SUPPORTS_NATIVE_JSON=true'
-          '--define=goog.style.GET_BOUNDING_CLIENT_RECT_ALWAYS_EXISTS=true'
-          '--define=goog.DEBUG=false'
+          '--externs=src/externs/externs.js'
+          '--jscomp_error=accessControls'
+          '--jscomp_error=checkRegExp'
+          # '--formatting=PRETTY_PRINT'
+          '--jscomp_error=checkTypes'
+          '--jscomp_error=checkVars'
+          '--jscomp_error=invalidCasts'
+          '--jscomp_error=missingProperties'
+          '--jscomp_error=nonStandardJsDocs'
+          '--jscomp_error=strictModuleDepCheck'
+          '--jscomp_error=undefinedVars'
+          '--jscomp_error=unknownDefines'
+          '--jscomp_error=visibility'
         ]
-
-      all:
-        options:
-          namespace: '*'
-          outputFilePath: 'build/all.js'
 
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
@@ -93,5 +101,5 @@ module.exports = (grunt) ->
       'coffee2closure'
       'templates'
       'deps'
-      # 'builder'
+      'builder'
     ]
