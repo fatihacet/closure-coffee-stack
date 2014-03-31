@@ -44,12 +44,12 @@ module.exports = (grunt) ->
             'build'
           ]
 
-    tests:
-      app:
-        options:
-          depsPath: '<%= deps.all.options.outputFile %>'
-          prefix: '<%= deps.all.options.prefix %>'
-        src: 'src/**/*_test.js'
+    tests            :
+      app            :
+        options      :
+          depsPath   : '<%= deps.all.options.outputFile %>'
+          prefix     : '<%= deps.all.options.prefix %>'
+        src          : 'build/js/**/*_test.js'
 
     builder:
       options:
@@ -75,7 +75,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-closure-coffee-stack'
   grunt.loadNpmTasks 'grunt-npm'
 
-  grunt.registerTask 'test', ->
+  grunt.registerTask 'test', 'Build stack with tests', ->
     grunt.task.run [
       'clean'
       'coffee'
@@ -86,7 +86,7 @@ module.exports = (grunt) ->
       'builder'
     ]
 
-  grunt.registerTask 'default', 'Build app and run stack.', (app = 'app') ->
+  grunt.registerTask 'default', 'Build stack.', (app = 'app') ->
     grunt.task.run [
       'clean'
       'coffee'
